@@ -3,13 +3,16 @@ var express = require('express');
 const User = require('../public/model/user.model');
 var router = express.Router();
 
+router.use('/api/user', (req, res, next)=>{
+  next();
+} )
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.post('/api/user/signup', (req, res) => {
+router.post('/signup', (req, res, next) => {
   if (req.body._id == "") {
     insertRecord(req, res);
   }

@@ -5,12 +5,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var cors = require('cors');
 var logger = require('morgan');
-const User = require('./../app/public/model/user.model');
+const User = require('./public/model/user.model');
 
 const PORT = 3000;
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const { dbService } = require('./config/connection');
 
 var app = express();
 
@@ -18,17 +19,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next)=>{
-  res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
-  console.log('First middleware');
-  next();
-});
 let corsoptions={
   origin: 'http://localhost:4200',
   methods: 'GET, PUT, POST, DELETE, PATCH',
@@ -38,8 +29,24 @@ let corsoptions={
 }
 app.use(cors(corsoptions))
 
-app.use('/', indexRouter);
-app.use('/api/user/', usersRouter);
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+//app.use('/', indexRouter);
+//app.use('/api/user/signup', usersRouter);
+
+app.use((req, res, next)=>{
+  res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+  console.log('First middleware');
+  next();
+});
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -57,6 +64,12 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(PORT,()=>console.log(`server running on port ${PORT}`))
+app.listen(PORT,()=>{
+//  let db  = new dbService();
+  console.log(`server running on port ${PORT}`)
+ // this.db.getConnection().then(()=>{
+
+  //})
+})
 
 module.exports = app;
