@@ -36,8 +36,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use('/', indexRouter);
-//app.use('/api/user/signup', usersRouter);
+
 
 app.use((req, res, next)=>{
   res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -45,6 +44,8 @@ app.use((req, res, next)=>{
   next();
 });
 
+app.use('/', usersRouter);
+app.use('/', indexRouter);
 
 
 

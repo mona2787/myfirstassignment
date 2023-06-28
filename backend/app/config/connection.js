@@ -20,6 +20,7 @@ mongoose.connect(
   ).then(success => {
     console.log("Connection succeeded");
     bindmodels();
+    bindroutes();
   }).catch(err => {
 
    
@@ -42,6 +43,18 @@ mongoose.connect(
  
 }
 
+bindroutes = function() {
+  const __dirname = path.resolve(path.dirname('./')); 
+ let pathToroute = path.join(__dirname, 'routes');
+ if(pathToroute){
+  let fileArray =  fs.readdirSync(pathToroute).filter(file=> file.indexOf('.')).map(file=>{
+                      require(`${pathToroute}/${file}`);
+                      return file;
+                     });
+                     return fileArray;
+ }
+ 
+}
 
 
 

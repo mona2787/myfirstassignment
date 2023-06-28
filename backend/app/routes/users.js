@@ -3,7 +3,8 @@ var express = require('express');
 const User = require('../public/model/user.model');
 var router = express.Router();
 
-router.use('/api/user', (req, res, next)=>{
+router.use('/api', (req, res, next)=>{
+  console.log('in user route');
   next();
 } )
 
@@ -12,7 +13,7 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.post('/signup', (req, res, next) => {
+router.post('/api/user/signup', (req, res, next) => {
   if (req.body._id == "") {
     insertRecord(req, res);
   }
