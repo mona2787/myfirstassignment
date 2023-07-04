@@ -7,9 +7,11 @@ import { AuthInterceptor } from "./auth/auth-interceptor";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularMaterialModule} from './angular-material.module';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddComponent } from './add/add.component';
 
 
 
@@ -17,7 +19,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,DashboardComponent
+    HeaderComponent,DashboardComponent,
+    AddComponent
+    
     
     
   ],
@@ -26,7 +30,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
    // AuthModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],

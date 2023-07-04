@@ -12,7 +12,12 @@ export class DashboardComponent {
   events: string[] = [];
   opened: boolean = true;
 
-  fillerNav =['Dashboard','About','Team'];
-  //shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
+  fillerNav =[
+    {text: 'Dashboard',
+     routerLink: '/'},
+     {text: 'Add Details',
+     routerLink: 'add'},
+     {text: 'About',
+     routerLink: 'about'},];
   constructor(){}
 }

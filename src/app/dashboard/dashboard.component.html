@@ -1,7 +1,8 @@
 <mat-sidenav-container class = "tp-container">
     <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
     (closed)="events.push('close!')">
-    <a class ="tp-section" mat-list-item routerLink="." *ngFor="let nav of fillerNav"> {{nav}}</a>
+    <p class ="tp-section" mat-list-item  *ngFor="let nav of fillerNav"> 
+        <a routerLink={{nav.routerLink}}>{{nav.text}}</a></p>
     
        
         
@@ -10,7 +11,7 @@
         
         <p>Events:</p>
         <div class="example-events">
-         <!-- <div *ngFor="let e of events">{{e}}</div>-->
+        <div *ngFor="let e of events">{{e}}</div>
         </div>
     </mat-sidenav-content>
  </mat-sidenav-container>
