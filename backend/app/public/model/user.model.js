@@ -2,7 +2,7 @@
 
 var userSchema =  new mongoose.Schema({
 
-  username: {
+  email: {
 
     type: String,
 
@@ -18,13 +18,6 @@ var userSchema =  new mongoose.Schema({
 
   },
 
-  mobile: {
-
-    type: Number,
-
-    required: 'This field is required'
-
-  },
 
 
 });

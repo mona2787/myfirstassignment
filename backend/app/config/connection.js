@@ -5,7 +5,9 @@ const path = require('path');
 
 
 
-mongoose.connect(
+
+
+let conn = mongoose.connect(
 
   "mongodb://localhost:27017/userdata",
 
@@ -17,10 +19,11 @@ mongoose.connect(
 
   
 
-  ).then(success => {
+  ).then((err, conn) => {    
     console.log("Connection succeeded");
     bindmodels();
     bindroutes();
+    return conn;
   }).catch(err => {
 
    
@@ -55,6 +58,7 @@ bindroutes = function() {
  }
  
 }
+module.exports = conn.db;
 
 
 
